@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include"visual.c"
 int checkwin(int box[3][3],int pos)
 {
@@ -67,27 +68,254 @@ int main()
         //                        if(box[i][j]==0)
         //                                printf("\t %d %d",i+1,j+1);
 		draw(box);
-                printf("\n Enter player 2's move:\t");
-		scanf("%d %d",&pos1,&pos2);
-                if(pos1>0 && pos1<4 &pos2>0 &pos2<4 && box[pos1-1][pos2-1]!=1)
-                {
-                        box[pos1-1][pos2-1]=2;
-                }
-                else
+		count++;
+		flag=0;
+                int i,j,check=0;
+        	for(i=0;i<3;i++)
 		{
-                        printf("invalid entry\n");
-			continue;
+               		if(box[i][0]==1 && box[i][1]==1 && box[i][2]==0)
+                	{
+				box[i][2]=2;
+				win=checkwin(box,2);
+				check=1;
+		                printf("\n");
+               			 if(win == 1)
+               			 {
+                       			 draw(box);
+                       			 printf("\nplayer 2 won the game");
+                       			 exit(0);
+               			 }
+				continue;
+				
+			}
 		}
+		if(check==1)
+			continue;
+		for(i=0;i<3;i++)
+		{
+                        if(box[i][0]==1 && box[i][1]==0 && box[i][2]==1)
+                        {
+                                box[i][1]=2;
+                                win=checkwin(box,2);
+                                printf("\n");
+				check=1;
+                                 if(win == 1)
+                                 {
+                                         draw(box);
+                                         printf("\nplayer 2 won the game");
+                                         exit(0);
+                                 }
+                                continue;
+
+
+                        }
+		}
+                if(check==1)
+                        continue;
+
+		for(i=0;i<3;i++)
+                {
+		        if(box[i][0]==0 && box[i][1]==1 && box[i][2]==1)
+                        {
+                                box[i][0]=2;
+                                win=checkwin(box,2);
+                                printf("\n");
+                                check=1;
+				 if(win == 1)
+                                 {
+                                         draw(box);
+                                         printf("\nplayer 2 won the game");
+                                         exit(0);
+                                 }
+                                continue;
+
+
+                        }
+		}
+                if(check==1)
+                        continue;
+		
+        	for(i=0;i<3;i++)
+		{
+                	if(box[0][i]==1 && box[1][i]==1 && box[2][i]==0)
+                       	{
+				box[2][i]=2;
+                                win=checkwin(box,2);
+				check=1;
+                                printf("\n");
+                                 if(win == 1)
+                                 {
+                                         draw(box);
+                                         printf("\nplayer 2 won the game");
+                                         exit(0);
+                                 }
+                                continue;
+
+
+			}
+		}
+                if(check==1)
+                        continue;
+
+		for(i=0;i<3;i++)
+		{
+                        if(box[0][i]==1 && box[1][i]==0 && box[2][i]==1)
+                        {
+                                box[1][i]=2;
+                                win=checkwin(box,2);
+				check=1;
+                                printf("\n");
+                                 if(win == 1)
+                                 {
+                                         draw(box);
+                                         printf("\nplayer 2 won the game");
+                                         exit(0);
+                                 }
+                                continue;
+
+
+                        }
+		}
+                if(check==1)
+                        continue;
+
+		for(i=0;i<3;i++)
+		{
+                        if(box[0][i]==0 && box[1][i]==1 && box[2][i]==1)
+                        {
+                                box[0][i]=2;
+                                win=checkwin(box,2);
+                                printf("\n");
+				check=1;
+                                 if(win == 1)
+                                 {
+                                         draw(box);
+                                         printf("\nplayer 2 won the game");
+                                         exit(0);
+                                 }
+                                continue;
+
+
+                        }
+		}
+                if(check==1)
+                        continue;
+
+        	if(box[0][0]==1 && box[1][1]==1 && box[2][2]==0)
+                {
+			box[2][2]=2;
+                                win=checkwin(box,2);
+                                printf("\n");
+                                 if(win == 1)
+                                 {
+                                         draw(box);
+                                         printf("\nplayer 2 won the game");
+                                         exit(0);
+                                 }
+                                continue;
+
+
+		}
+		if(box[0][0]==1 && box[1][1]==0 && box[2][2]==1)
+                {
+                        box[1][1]=2;
+                                win=checkwin(box,2);
+                                printf("\n");
+                                 if(win == 1)
+                                 {
+                                         draw(box);
+                                         printf("\nplayer 2 won the game");
+                                         exit(0);
+                                 }
+                                continue;
+
+
+                }
+		if(box[0][0]==0 && box[1][1]==1 && box[2][2]==1)
+                {
+                        box[0][0]=2;
+                                win=checkwin(box,2);
+                                printf("\n");
+                                 if(win == 1)
+                                 {
+                                         draw(box);
+                                         printf("\nplayer 2 won the game");
+                                         exit(0);
+                                 }
+                                continue;
+
+
+                }
+
+        	if(box[0][2]==1 && box[1][1]==1 && box[2][0]==0)
+              	{
+			box[2][0]=2;
+                                win=checkwin(box,2);
+                                printf("\n");
+                                 if(win == 1)
+                                 {
+                                         draw(box);
+                                         printf("\nplayer 2 won the game");
+                                         exit(0);
+                                 }
+                                continue;
+
+
+		}
+		if(box[0][2]==1 && box[1][1]==0 && box[2][0]==1)
+                {
+                        box[1][1]=2;
+                                win=checkwin(box,2);
+                                printf("\n");
+                                 if(win == 1)
+                                 {
+                                         draw(box);
+                                         printf("\nplayer 2 won the game");
+                                         exit(0);
+                                 }
+                                continue;
+
+
+                }
+		if(box[0][2]==0 && box[1][1]==1 && box[2][0]==1)
+                {
+                        box[0][2]=2;
+                                win=checkwin(box,2);
+                                printf("\n");
+                                 if(win == 1)
+                                 {
+                                         draw(box);
+                                         printf("\nplayer 2 won the game");
+                                         exit(0);
+                                 }
+                                continue;
+
+
+                }
+		int x1,y1;
+	//	int randflag=0;
+		while(1)
+		{
+			x1= rand()%3;
+			y1= rand()%3;
+			if(box[x1][y1]==0)
+				break;
+		}
+		box[x1][y1]=2;
                 win=checkwin(box,2);
+                printf("\n");
                 if(win == 1)
                 {
-			draw(box);
-                        printf("\nplayer 2 won the game");
-                        break;
-                }
-                flag=0;
-                count++;
-	}
+                                         draw(box);
+                                         printf("\nplayer 2 won the game");
+                                         exit(0);
+                 }
+                               
+
+			
+        
+
+	}	
 	}
 	if(count==9)
 	{
