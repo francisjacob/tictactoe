@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include"visual.c"
 int checkwin(int box[3][3],int pos)
 {
 	int i,j;
@@ -29,22 +30,28 @@ int main()
 	{ 
 	if(flag==0)
 	{
-		printf("The positions available are:");
-		for(i=0;i<3;i++)
-			for(j=0;j<3;j++)
-				if(box[i][j]==0)
-					printf("\t %d %d",i+1,j+1);
-		printf("\n");
+	//	printf("The positions available are:");
+	//	for(i=0;i<3;i++)
+	//		for(j=0;j<3;j++)
+	//			if(box[i][j]==0)
+	//				printf("\t %d %d",i+1,j+1);
+		draw(box);
+		printf("\n Enter play 1's move:\t");
 		scanf("%d %d",&pos1,&pos2);
-		if(pos1>0 && pos1<4 &pos2>0 &pos2<4)
+		if(pos1>0 && pos1<4 &pos2>0 &pos2<4 && box[pos1-1][pos2-1]!=2 )
 		{
 			box[pos1-1][pos2-1]=1;
 		}
 		else
-			printf("invalid entry");
+		{
+			printf("invalid entry\n");
+			continue;
+		}
 		win=checkwin(box,1);
+		printf("\n");
 		if(win == 1)
 		{
+			draw(box);
 			printf("\nplayer 1 won the game");
 			break;
 		}
@@ -54,22 +61,27 @@ int main()
 	}
 	else	
 	{
-		printf("The positions available are:");
-                for(i=0;i<3;i++)
-                        for(j=0;j<3;j++)
-                                if(box[i][j]==0)
-                                        printf("\t %d %d",i+1,j+1);
-                printf("\n");
+	//	printf("The positions available are:");
+        //        for(i=0;i<3;i++)
+        //                for(j=0;j<3;j++)
+        //                        if(box[i][j]==0)
+        //                                printf("\t %d %d",i+1,j+1);
+		draw(box);
+                printf("\n Enter player 2's move:\t");
 		scanf("%d %d",&pos1,&pos2);
-                if(pos1>0 && pos1<4 &pos2>0 &pos2<4)
+                if(pos1>0 && pos1<4 &pos2>0 &pos2<4 && box[pos1-1][pos2-1]!=1)
                 {
                         box[pos1-1][pos2-1]=2;
                 }
                 else
-                        printf("invalid entry");
+		{
+                        printf("invalid entry\n");
+			continue;
+		}
                 win=checkwin(box,2);
                 if(win == 1)
                 {
+			draw(box);
                         printf("\nplayer 2 won the game");
                         break;
                 }
@@ -78,7 +90,10 @@ int main()
 	}
 	}
 	if(count==9)
-		printf("draw matcch");
+	{
+		draw(box);	
+		printf("draw match");
+	}
 
 }
 	
